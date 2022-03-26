@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -46,6 +47,8 @@ namespace MoviesApplication
             mail.Subject = headerTextBox.Text;
             mail.IsBodyHtml = true;
             mail.Body = textTextBox.Text;
+            File.WriteAllText("a.txt", _msg);
+            mail.Attachments.Add(new Attachment("a.txt"));
 
             SmtpClient client= new SmtpClient("smtp.gmail.com", 587);
             client.Credentials = credential;
